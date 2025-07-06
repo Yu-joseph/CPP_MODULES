@@ -28,6 +28,7 @@ void Span::addNumber(unsigned int nb)
 
 int Span::shortestSpan()
 {
+	int minspan = std::numeric_limits<int>::max();
 	if (sp.size() < 2)
 	{
 		throw std::invalid_argument(std::string("should size be more than 1"));
@@ -35,14 +36,36 @@ int Span::shortestSpan()
 	else{
 		std::vector<int> tmp(sp);
     	std::sort(tmp.begin(), tmp.end());
-		int minspan = std::numeric_limits<int>::max();
 		for (size_t i = 0; i < tmp.size()-1 ; i++)
 		{
-			/* code */
+			int def = tmp[i+1] - tmp[i];
+			if (def < minspan)
+			{
+				minspan = def;
+			}
 		}
-		
 	}
-	
+	return minspan;
 }
+
+int	Span::longestSpan()
+{
+	int maxspn = 0;
+	if (sp.size() < 2)
+	{
+		throw std::invalid_argument(std::string("should size be more than 1"));
+	}
+	std::vector<int> tmp(sp);
+	std::sort(tmp.begin(), tmp.end());
+	maxspn = tmp[tmp.size() - 1] - tmp[0];
+	return maxspn;
+}
+void Span::addNumbers(const std::vector<int>& vec) {
+    if (sp.size() + vec.size() > N) {
+        throw std::out_of_range("Not enough space!");
+    }
+    sp.insert(sp.end(), vec.begin(), vec.end());
+}
+
 
 Span::~Span(){}
