@@ -2,6 +2,7 @@
 
 int main(int ac, char **av)
 {
+	(void)av;
 	if (ac != 2)
 	{
 		std::cerr << "error args" << std::endl;
@@ -9,7 +10,9 @@ int main(int ac, char **av)
 	}
 	try
 	{
-		
+		BitcoinExchange bitcoin;
+		bitcoin.check_file();
+		bitcoin.input_file(std::string(av[1]));
 	}
 	catch(const std::exception& e)
 	{
