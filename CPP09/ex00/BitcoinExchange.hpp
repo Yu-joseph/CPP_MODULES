@@ -14,7 +14,9 @@ public:
 	BitcoinExchange();
 	void	check_file();
 	void input_file(std::string inpt);
-
+	// void parse_year(int y);
+	bool parse_date(std::string date);
+	std::string parse_amount(std::string amount);
 	~BitcoinExchange();
 };
 
