@@ -51,7 +51,6 @@ void BitcoinExchange::input_file(std::string inpt)
 				std::cerr << errtype << " " << amount << std::endl;
 				continue;
 			}
-			
 		}
 	}
 	
@@ -59,21 +58,39 @@ void BitcoinExchange::input_file(std::string inpt)
 
 std::string BitcoinExchange::parse_amount(std::string amount)
 {
-
+	(void)amount;
+	return "true";
 }
-
 bool BitcoinExchange::parse_date(std::string data)
 {
-	if (data.size() != 10)
-		return false;
-	
-	std::stringstream date(data);
-	std::string year;
-	if (std::getline(date, year, '-'))
-	{
-		
-	}
-	return true;
+	size_t start = data.find_first_not_of(" \t\r\n");
+    size_t end = data.find_last_not_of(" \t\r\n");
+	data = data.substr(start, end - start + 1);
+    if (data.length() != 10 || data[4] != '-' || data[7] != '-')
+        return false;
+
+    std::string year = data.substr(0, 4);
+    std::stringstream yr(year);
+    std::string month = data.substr(6,8);
+	std::cout << month << std::endl;
+    std::stringstream mn(month);
+    int y = 0;
+    if (year.size() != 4 || !(yr >> y))
+        return false;
+
+    return true;
 }
+// 0123-56-78
+// std::string BitcoinExchange::trim(const std::string& str) 
+// {
+//     size_t start = str.find_first_not_of(" \t\r\n");
+//     size_t end = str.find_last_not_of(" \t\r\n");
+
+//     if (start == std::string::npos)
+//         return "";
+
+    
+// }
+
 
 BitcoinExchange::~BitcoinExchange(){}

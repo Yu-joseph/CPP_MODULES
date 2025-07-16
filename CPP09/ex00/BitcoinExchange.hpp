@@ -16,7 +16,8 @@ public:
 	void input_file(std::string inpt);
 	// void parse_year(int y);
 	bool parse_date(std::string date);
-	std::string parse_amount(std::string amount);
+	std::string parse_amount(std::string data);
+	// std::string trim(const std::string& str);
 	~BitcoinExchange();
 };
 
