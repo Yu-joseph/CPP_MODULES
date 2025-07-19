@@ -4,7 +4,7 @@ C = c++
 
 F = -Wall -Wextra -Werror -std=c++98
 
-S = main.cpp 
+S = main.cpp RPN.cpp
 
 O = $(S:.cpp=.o)
 
