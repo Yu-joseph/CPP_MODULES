@@ -2,6 +2,7 @@
 
 int main(int ac, char **av)
 {
+	RPN a;
 	if (ac != 2)
 	{
 		std::cerr << "Should be two args" << std::endl;
@@ -9,7 +10,7 @@ int main(int ac, char **av)
 	}
 	try
 	{
-		RPN::parse_arg(std::string(av[1]));
+		a.parse_arg(std::string(av[1]));
 	}
 	catch(const std::exception& e)
 	{
