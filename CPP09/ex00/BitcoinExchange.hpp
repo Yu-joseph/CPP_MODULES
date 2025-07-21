@@ -12,6 +12,8 @@ private:
 	std::map<std::string, float> btc;
 public:
 	BitcoinExchange();
+	BitcoinExchange(const BitcoinExchange& ls);
+	BitcoinExchange& operator=(const BitcoinExchange& ls);
 	void	check_file();
 	void input_file(std::string inpt);
 	// void parse_year(int y);

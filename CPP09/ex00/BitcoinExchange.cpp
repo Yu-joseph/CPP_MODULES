@@ -2,6 +2,17 @@
 
 BitcoinExchange::BitcoinExchange(){}
 
+BitcoinExchange::BitcoinExchange(const BitcoinExchange& ls)
+{
+	(void)ls;
+}
+
+BitcoinExchange& BitcoinExchange::operator=(const BitcoinExchange& ls)
+{
+	(void)ls;
+	return *this;
+}
+
 void BitcoinExchange::check_file()
 {
 	std::fstream file("data.csv");

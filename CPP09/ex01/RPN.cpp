@@ -5,6 +5,17 @@
 
 RPN::RPN(){}
 
+RPN::RPN(const RPN& ls)
+{
+	(void)ls;
+}
+
+RPN& RPN::operator=(const RPN& ls)
+{
+	(void)ls;
+	return *this;
+}
+
 void RPN::parse_arg(std::string arg)
 {
     std::stringstream ss(arg);
