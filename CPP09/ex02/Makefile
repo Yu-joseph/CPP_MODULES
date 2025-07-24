@@ -4,7 +4,7 @@ C = c++
 
 F = -Wall -Wextra -Werror -std=c++98
 
-S = main.cpp RPN.cpp
+S = main.cpp PmergeMe.cpp
 
 O = $(S:.cpp=.o)
 
