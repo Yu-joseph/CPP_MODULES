@@ -11,7 +11,8 @@ int main(int ac, char **av)
 	try
 	{
 		nb.checkNb(av);
-		nb.sort_fn();
+		nb.sort_fn_vec();
+		nb.sort_fn_deq();
 	}
 	catch(const std::exception& e)
 	{
