@@ -23,7 +23,6 @@ std::string PmergeMe::trim(const std::string &str) {
 //
 void PmergeMe::checkNb(char **nb)
 {
-
 	int i = 1;
 	// std::cout << "where" << std::endl;
 	// // std::cout << nb[0] << std::endl;
@@ -71,10 +70,55 @@ void PmergeMe::sort_fn_vec()
     // std::cout << std::endl;
 }
 
+void PmergeMe::fillPair(std::vector<std::pair<int, int> >& pairs, int& odd)
+{
+	size_t size = this->vec.size();
+	if (size % 2 != 0)
+	{
+		odd = this->vec[size - 1];
+		size -= 1;
+	}
+	else
+	{
+		odd = -1;
+	}
+
+	for (size_t i = 0; i < size; i += 2)
+	{
+
+		if (this->vec[i] < this->vec[i+1])
+		{
+			std::pair<int, int> pr(this->vec[i+1], this->vec[i]);
+			pairs.push_back(pr);
+		}
+		else{
+			std::pair<int, int> pr(this->vec[i], this->vec[i + 1]);
+			pairs.push_back(pr);
+		}
+		
+	}
+}
+
+
 void PmergeMe::vec_sort()
 {
-	std::vector<int> mainChain;
-	std::vector<int> pendingChain;
+	std::vector<int> winner, losers;
+	std::vector<std::pair<int, int> > pairs;
+	int odd;
+	odd = -1;
+	fillPair(pairs, odd);
+	// std::cout << "odd value: " << odd << std::endl;
+	// for (std::vector<std::pair<int, int> >::iterator it = pairs.begin(); it != pairs.end(); it++)
+	// {
+	// 	std::cout << "First: " << it->first << ", Second: " << it->second << std::endl;
+	// }
+	SplitNumbers(pairs, winner, losers);
+	
+}
+
+void PmergeMe::SplitNumbers(std::vector<std::pair<int, int> >& pairs, std::vector<int> &winner, std::vector<int> &loser)
+{
+	
 }
 void PmergeMe::sort_fn_deq()
 {
