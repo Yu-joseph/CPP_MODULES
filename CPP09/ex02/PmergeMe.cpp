@@ -58,7 +58,7 @@ void PmergeMe::sort_fn_vec()
     std::cout << std::endl;
 	clock_t start = clock();
 	//
-	vec_sort();
+	vec_sort(this->vec);
 	//
 	clock_t end = clock();
 	double time_us = (end - start) * 1e6 / CLOCKS_PER_SEC;
@@ -70,12 +70,12 @@ void PmergeMe::sort_fn_vec()
     // std::cout << std::endl;
 }
 
-void PmergeMe::fillPair(std::vector<std::pair<int, int> >& pairs, int& odd)
+void PmergeMe::fillPair(std::vector<std::pair<int, int> >& pairs, int& odd, std::vector<int> vect)
 {
-	size_t size = this->vec.size();
+	size_t size = vect.size();
 	if (size % 2 != 0)
 	{
-		odd = this->vec[size - 1];
+		odd = vect[size - 1];
 		size -= 1;
 	}
 	else
@@ -86,13 +86,13 @@ void PmergeMe::fillPair(std::vector<std::pair<int, int> >& pairs, int& odd)
 	for (size_t i = 0; i < size; i += 2)
 	{
 
-		if (this->vec[i] < this->vec[i+1])
+		if (vect[i] < vect[i+1])
 		{
-			std::pair<int, int> pr(this->vec[i+1], this->vec[i]);
+			std::pair<int, int> pr(vect[i+1], vect[i]);
 			pairs.push_back(pr);
 		}
 		else{
-			std::pair<int, int> pr(this->vec[i], this->vec[i + 1]);
+			std::pair<int, int> pr(vect[i], vect[i + 1]);
 			pairs.push_back(pr);
 		}
 		
@@ -100,25 +100,51 @@ void PmergeMe::fillPair(std::vector<std::pair<int, int> >& pairs, int& odd)
 }
 
 
-void PmergeMe::vec_sort()
+// std::vector<int>    Vector::fordJohnsonSort(std::vector<int> numbers){
+//     std::vector<int> winners, losers;
+//     std::vector<std::pair<int, int> > pairsVector;
+//     int odd = -1;
+
+//     if (numbers.size() == 1)
+//         return (numbers);
+//     pairsVector = makeSortedPairs(numbers, odd);
+//     separatePairs(pairsVector, winners, losers);
+//     winners = fordJohnsonSort(winners);
+//     insertIntoWinners(winners, losers, odd);
+//     return (winners);
+// }
+
+std::vector<int> PmergeMe::vec_sort(std::vector<int> vect)
 {
+	
 	std::vector<int> winner, losers;
 	std::vector<std::pair<int, int> > pairs;
 	int odd;
 	odd = -1;
-	fillPair(pairs, odd);
+	if (vect.size() == 1)
+		return vect;
+	fillPair(pairs, odd, vect);
 	// std::cout << "odd value: " << odd << std::endl;
-	// for (std::vector<std::pair<int, int> >::iterator it = pairs.begin(); it != pairs.end(); it++)
-	// {
-	// 	std::cout << "First: " << it->first << ", Second: " << it->second << std::endl;
-	// }
 	SplitNumbers(pairs, winner, losers);
+	// for (std::vector<int>::iterator it = winner.begin(); it != winner.end(); it++)
+	// {
+	// 	std::cout << " " << *it << ",";
+	// }
+	// std::cout << std::endl;
+	// for (std::vector<int>::iterator it = losers.begin(); it != losers.end(); it++)
+	// {
+	// 	std::cout << "Lossers: " << *it << std::endl;
+	// }
 	
 }
 
 void PmergeMe::SplitNumbers(std::vector<std::pair<int, int> >& pairs, std::vector<int> &winner, std::vector<int> &loser)
 {
-	
+	for (std::vector<std::pair<int, int> >::iterator it = pairs.begin(); it != pairs.end(); it++)
+	{
+		winner.push_back(it->first);
+		loser.push_back(it->second);
+	}
 }
 void PmergeMe::sort_fn_deq()
 {
