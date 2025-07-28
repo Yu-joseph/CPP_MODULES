@@ -5,6 +5,9 @@
 #include <stack>
 #include <vector>
 #include <ctime>
+// #include <temp
+
+// template <typename Container>
 
 class PmergeMe
 {
@@ -20,7 +23,13 @@ class PmergeMe
 		std::string trim(const std::string &str);
 		void sort_fn_vec();
 		// void vec_sort();
+
+		// sort for vector
 		std::vector<int> vec_sort(std::vector<int> vect);
+		void addToWinners(std::vector<int>& winner, const std::vector<int>& losers, int odd);
+		template <typename Container>
+		void binaryInsert(Container& cont, int value);
+		std::vector<size_t> getJacobsthalIndices(size_t size);
 		void  sort_fn_deq();
 		void deque_sort();
 		/// use
