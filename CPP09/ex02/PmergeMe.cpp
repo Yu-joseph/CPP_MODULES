@@ -58,7 +58,11 @@ void PmergeMe::sort_fn_vec()
     std::cout << std::endl;
 	clock_t start = clock();
 	//
-	vec_sort(this->vec);
+	std::cout << "after :" ;
+	std::vector<int> storted = vec_sort(this->vec);
+	for (size_t i = 0; i <storted.size(); ++i)
+        std::cout <<storted[i] << " ";
+    std::cout << std::endl;
 	//
 	clock_t end = clock();
 	double time_us = (end - start) * 1e6 / CLOCKS_PER_SEC;
@@ -100,19 +104,7 @@ void PmergeMe::fillPair(std::vector<std::pair<int, int> >& pairs, int& odd, std:
 }
 
 
-// std::vector<int>    Vector::fordJohnsonSort(std::vector<int> numbers){
-//     std::vector<int> winners, losers;
-//     std::vector<std::pair<int, int> > pairsVector;
-//     int odd = -1;
-
-//     if (numbers.size() == 1)
-//         return (numbers);
-//     pairsVector = makeSortedPairs(numbers, odd);
-//     separatePairs(pairsVector, winners, losers);
-//     winners = fordJohnsonSort(winners);
-//     insertIntoWinners(winners, losers, odd);
-//     return (winners);
-// }
+// template <typename Container>
 
 std::vector<int> PmergeMe::vec_sort(std::vector<int> vect)
 {
@@ -126,17 +118,44 @@ std::vector<int> PmergeMe::vec_sort(std::vector<int> vect)
 	fillPair(pairs, odd, vect);
 	// std::cout << "odd value: " << odd << std::endl;
 	SplitNumbers(pairs, winner, losers);
+	winner = vec_sort(winner);
+	addToWinners(winner, losers, odd);
 	// for (std::vector<int>::iterator it = winner.begin(); it != winner.end(); it++)
 	// {
 	// 	std::cout << " " << *it << ",";
-	// }
+	// } 
 	// std::cout << std::endl;
 	// for (std::vector<int>::iterator it = losers.begin(); it != losers.end(); it++)
 	// {
 	// 	std::cout << "Lossers: " << *it << std::endl;
 	// }
-	
+	return winner;
 }
+
+template <typename Container>
+
+void PmergeMe::binaryInsert(Container& cont, int value)
+{
+    typename Container::iterator pos = std::lower_bound(cont.begin(), cont.end(), value);
+    cont.insert(pos, value);
+}
+
+
+void PmergeMe::addToWinners(std::vector<int>& winner, const std::vector<int>& losers, int odd)
+{
+    for (size_t i = 0; i < losers.size(); ++i)
+        binaryInsert(winner, losers[i]);
+
+    if (odd != -1)
+        binaryInsert(winner, odd);
+
+    // std::cout << "Merged result: ";
+    // for (size_t i = 0; i < winner.size(); ++i)
+    //     std::cout << winner[i] << " ";
+    // std::cout << std::endl;
+}
+
+
 
 void PmergeMe::SplitNumbers(std::vector<std::pair<int, int> >& pairs, std::vector<int> &winner, std::vector<int> &loser)
 {
