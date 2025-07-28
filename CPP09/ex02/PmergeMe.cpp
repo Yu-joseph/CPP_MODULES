@@ -135,7 +135,7 @@ std::vector<int> PmergeMe::vec_sort(std::vector<int> vect)
 	// {
 	// 	std::cout << "Lossers: " << *it << std::endl;
 	// }
-	
+	return winner;
 }
 
 void PmergeMe::SplitNumbers(std::vector<std::pair<int, int> >& pairs, std::vector<int> &winner, std::vector<int> &loser)
