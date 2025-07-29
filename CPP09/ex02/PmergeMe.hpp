@@ -21,15 +21,15 @@ class PmergeMe
 		void checkNb(char **nb);
 		void fill_nb(std::string nb);
 		std::string trim(const std::string &str);
-		void sort_fn_vec();
 		// void vec_sort();
-
-		// sort for vector
+		//sort for the vector
+		void sort_fn_vec();
 		std::vector<int> vec_sort(std::vector<int> vect);
 		void addToWinners(std::vector<int>& winner, const std::vector<int>& losers, int odd);
 		template <typename Container>
 		void binaryInsert(Container& cont, int value);
 		std::vector<size_t> getJacobsthalIndices(size_t size);
+		// sort for vector
 		void  sort_fn_deq();
 		void deque_sort();
 		/// use

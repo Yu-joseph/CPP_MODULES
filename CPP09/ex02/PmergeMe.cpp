@@ -23,9 +23,6 @@ std::string PmergeMe::trim(const std::string &str) {
 void PmergeMe::checkNb(char **nb)
 {
 	int i = 1;
-	// std::cout << "where" << std::endl;
-	// // std::cout << nb[0] << std::endl;
-	// std::cout << "where" << std::endl;
 	while(nb[i])
 	{
 		// std::cout << "where" << std::endl;
@@ -102,12 +99,8 @@ void PmergeMe::fillPair(std::vector<std::pair<int, int> >& pairs, int& odd, std:
 	}
 }
 
-
-// template <typename Container>
-
 std::vector<int> PmergeMe::vec_sort(std::vector<int> vect)
 {
-	
 	std::vector<int> winner, losers;
 	std::vector<std::pair<int, int> > pairs;
 	int odd;
