@@ -200,10 +200,10 @@ void PmergeMe::sort_fn_deq()
 	double time_us = (end - start) * 1e6 / CLOCKS_PER_SEC;
 	std::cout << "Time to process a range of " << this->vec.size() 
 	<< " elements with std::deque : " << time_us << "us" << std::endl;
-    std::cout << "Deque: ";
-    for (size_t i = 0; i < ls.size(); ++i)
-        std::cout << ls[i] << " ";
-    std::cout << std::endl;
+    // std::cout << "Deque: ";
+    // for (size_t i = 0; i < ls.size(); ++i)
+    //     std::cout << ls[i] << " ";
+    // std::cout << std::endl;
 }
 
 std::deque<int> PmergeMe::deque_sort(std::deque<int> deque)

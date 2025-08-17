@@ -190,16 +190,6 @@ bool BitcoinExchange::parse_date(std::string data)
     return true;
 }
 
-
-
-
-
-
-
-
-
-
-
 // bool BitcoinExchange::parse_date(std::string data)
 // {
 // 	size_t start = data.find_first_not_of(" \t\r\n");
